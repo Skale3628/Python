@@ -1,1 +1,60 @@
+from tkinter import *                               # Import all classes and functions from tkinter
+from PIL import Image, ImageTk                      # Import Image and ImageTk from PIL for image handling
+from tkinter import messagebox                      # Import messagebox for displaying alerts
+
+def Handle_login():                                 # Define the function to handle login
+    email = email_input.get()                       # Get the email input from the user
+    password = password_input.get()                 # Get the password input from the user
+
+    # Check if the email and password match the predefined values
+    if email == "abc" and password == '123':
+        messagebox.showinfo("Success", "You are logged in")                     # Show success message
+    else:
+        messagebox.showerror("Error", "Invalid email or password")              # Show error message
+
+root = Tk()                                         # Create the main application window
+root.title("demo")                                  # Set the title of the window
+# root.iconbitmap("demo_icon.ico")                  # Uncomment to set a custom icon for the window
+root.geometry("500x500")                            # Set the dimensions of the window
+# root.resizable(width=0, height=0)                 # Uncomment to make the window non-resizable
+root.configure(bg="black")                          # Set the background color of the window to black
+
+# Load an image from the specified path
+img = Image.open(r"D:\New folder\space.jpg")        # Open the image file
+resized_img = img.resize((200, 200))                # Resize the image to 200x200 pixels
+# img = ImageTk.PhotoImage(Image.open(r"D:\New folder\space.jpg"))                           # Uncomment to set image without resizing
+img = ImageTk.PhotoImage(resized_img)               # Convert the resized image to PhotoImage format
+img_label = Label(root, image=img)                  # Create a label to display the image
+# img_label.image = img                             # Uncomment to keep a reference to the image
+img_label.pack()                                    # Pack the image label into the window
+
+# Create a label for greeting text
+text_label = Label(root, text="Hi Platonic", fg='white', bg='black')                        # Set text color to white and background to black
+text_label.config(font=("Arial", 20))                                                       # Set the font and size for the label
+text_label.pack()                                                                           # Pack the text label into the window
+
+# Create a label for email input
+email_label = Label(root, text="Enter email", fg='blue', bg='black')                        # Set text color to blue
+email_label.config(font=("Arial", 12))                                                      # Set the font and size for the label
+email_label.pack(pady=(10, 10))                                                             # Pack the email label with padding
+
+# Create an entry widget for email input
+email_input = Entry(root, width=60)                                                         # Create an entry box with specified width
+email_input.pack(ipady=5, pady=(1, 10))                                                     # Pack the entry box with internal padding and vertical padding
+
+# Create a label for password input
+password_label = Label(root, text="Enter password", fg='blue', bg='black')                  # Set text color to blue
+password_label.config(font=("Arial", 12))                                                   # Set the font and size for the label
+password_label.pack(pady=(10, 10))                                                          # Pack the password label with padding
+
+# Create an entry widget for password input
+password_input = Entry(root, width=60)                                                      # Create an entry box with specified width
+password_input.pack(ipady=5, pady=(1, 10))                                                  # Pack the entry box with internal padding and vertical padding
+
+# Create a login button
+login_btn = Button(root, text="Login", fg='green', bg='white', command=Handle_login)        # Set button text and colors
+login_btn.config(font=("Arial", 12))                                                        # Set the font and size for the button
+login_btn.pack(pady=(10, 20))                                                               # Pack the button with vertical padding
+
+root.mainloop()  # Start the main event loop to keep the window open
 
